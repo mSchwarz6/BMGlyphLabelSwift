@@ -211,7 +211,7 @@ class BMGlyphLabel: SKNode {
             var c: unichar
             var node: SKSpriteNode
             
-            let charCount      = _text.characters.count
+            let charCount      = _text.count
             let label          = NSString(string: _text)
             let lineChangeChar = NSString(string: "\n").character(at: 0)
             
@@ -268,14 +268,14 @@ class BMGlyphLabel: SKNode {
         let scaleFactor = UIScreen.main.scale
         let nodeCount = children.count
         let lineCount = _text.components(separatedBy: "\n").count - 1
-        let charCount = _text.characters.count
+        let charCount = _text.count
         
         let label = NSString(string: _text)
         let lineChangeChar = NSString(string: "\n").character(at: 0)
         
         // If there are more existing nodes than needed - remove them
         if nodeCount > 0 && (charCount - lineCount) < nodeCount {
-            for i in (charCount - lineCount)..<nodeCount {
+            for i in ((charCount - lineCount)..<nodeCount).reversed() {
                 children[i].removeFromParent()
             }
         }
